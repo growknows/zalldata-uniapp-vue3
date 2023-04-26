@@ -25,8 +25,8 @@ var _ = {}, sa = {
 		preset_properties: {url_path: !0},
 		preset_events: {moments_page: !1, defer_track: !1, share_info_use_string: !1},
 		batch_send: !0,
-		storage_store_key: "sensorsdata2015_wechat",
-		storage_prepare_data_key: "sensors_mp_prepare_data"
+		storage_store_key: "zalldata_wechat",
+		storage_prepare_data_key: "zalldata_mp_prepare_data"
 	}
 }, mpHook = {
 	data: 1,
