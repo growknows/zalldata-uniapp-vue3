@@ -1,5 +1,5 @@
 // 原生SDK提供的API
-import sensors from '../jssdk/web.js';
+import zallSDK from '../jssdk/web.js';
 import mobilePopups from "../plugin/mb-popup.esm.min"
 import webPopups from "../plugin/web-popup.esm.min"
 
@@ -8,7 +8,7 @@ const systemInfo = uni.getSystemInfoSync();
 let popups = mobilePopups;
 let sa = {
 	// 提供扩展性
-	instance: sensors,
+	instance: zallSDK,
 	// 提供初始化和配置参数
 	init: (para) => {
 		para = para || sa.para;
@@ -16,16 +16,16 @@ let sa = {
 			is_track_single_page: true
 		};
 		Object.assign(defaultValue, para);
-		sensors.init.call(sensors, defaultValue);
+		zallSDK.init.call(zallSDK, defaultValue);
 	},
 	//弹窗初始化
 	popupInit: (para) => {
 		if (typeof para === "object" && para !== null) {
 			if(systemInfo.screenWidth > 1024) {
-				sensors.use('WebPopup', para);
+				zallSDK.use('WebPopup', para);
 				popups = webPopups;
 			}else {
-				sensors.use('Popup', para);
+				zallSDK.use('Popup', para);
 			}
 		}
 	},
@@ -36,17 +36,17 @@ let sa = {
 	},
 
 	// 各端通用的常用API
-	getDistinctID: sensors.store.getDistinctId.bind(sensors.store),
+	getDistinctID: zallSDK.store.getDistinctId.bind(zallSDK.store),
 	getAnonymousID: () => {
-		return sensors.quick('getAnonymousID');
+		return zallSDK.quick('getAnonymousID');
 	},
 
-	register: sensors.registerPage.bind(sensors),
+	register: zallSDK.registerPage.bind(zallSDK),
 	clearRegister: () => {
 		console.log('web 中不支持此方法 - clearRegister');
 	},
 	quick:(event,para) => {
-		sensors.quick(event,para);
+		zallSDK.quick(event,para);
 	},
 	popupLoadSuccess: (callback) => {
 		if(popups.info.supportCustom && popups.info.supportCustom === 'withoutCampaignListener') {
