@@ -1,6 +1,6 @@
 import {createSSRApp} from "vue";
 import App from "./App.vue";
-import zalldata from './utils/uni-app-sdk/index'
+import zalldata from '../../uni-app-sdk/index'
 // 配置初始化参数
 zalldata.setPara({
     name: 'sensors',
@@ -12,9 +12,9 @@ zalldata.setPara({
         appHide: true, // 默认为 true，false 则关闭 $MPHide 事件采集
         pageShow: true, // 默认为 true，false 则关闭 $MPViewScreen 事件采集
         pageShare: true, // 默认为 true，false 则关闭 $MPShare 事件采集
-        mpClick: false, // 默认为 false，true 则开启 $MPClick 事件采集
+        mpClick: true, // 默认为 false，true 则开启 $MPClick 事件采集
         mpFavorite: true, // 小程序收藏，默认为 true，false 则关闭 $MPAddFavorites 事件采集
-        pageLeave: false // 默认为 false， true 则开启 $MPPageLeave事件采集
+        pageLeave: true // 默认为 false， true 则开启 $MPPageLeave事件采集
     },
     // 自定义渠道追踪参数，如 source_channel: ["custom_param"]
     source_channel: ['custom_param'],

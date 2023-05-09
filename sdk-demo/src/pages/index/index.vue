@@ -13,26 +13,28 @@
     <view class="btn-item">
       <button type="default" plain="true" @tap="onChangeProfile">设置用户属性</button>
     </view>
+		<view class="btn-item">
+			<button type="default"
+							plain="true"
+							@tap="onEvent"
+							data-name="采集任意点击"
+							data-content="这是一个任意点击的采集事件"
+			>
+				采集任意点击
+			</button>
+		</view>
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { onShareAppMessage } from "@dcloudio/uni-app";
 
 const title = ref('Hello')
 const onLogin = () => {
-  // #ifdef H5
   uni.zalldata.register({
     $distinctIdType: 2
   })
-  // #endif
-
-  // #ifdef MP-WEIXIN
-  uni.zalldata.registerApp({
-    $distinctIdType: 2
-  })
-  // #endif
-
   uni.zalldata.login('mobile-123456')
 }
 
@@ -43,16 +45,10 @@ const onTrack = () => {
 }
 
 const onChange = () => {
-// #ifdef H5
   uni.zalldata.register({
-    $platform: 'miniapp'
+    $app_name: '测试小程序'
   })
-  //#endif
-  // #ifdef MP-WEIXIN
-  uni.zalldata.instance.registerApp({
-    $platform: 'miniapp'
-  })
-  //#endif
+	console.log('公共属性设置成功！')
 }
 
 const onChangeProfile = () => {
@@ -60,7 +56,17 @@ const onChangeProfile = () => {
     $title: '你好111'
   })
 }
+const onEvent = () => {
+	console.log('1111111')
+}
 
+// 开启分享, 此时可上报分享事件
+onShareAppMessage(() => {
+	return {
+		title: '埋点采集',
+		path: "pages/index/index"
+	}
+})
 </script>
 
 <style>

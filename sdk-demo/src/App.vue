@@ -4,47 +4,26 @@ import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
 onLaunch(() => {
   console.log("App Launch", uni.zalldata);
   const zalldata = uni.zalldata
-
   // 初始化 SDK
   // 直接 init  埋点 id 会随机生成UUID
   // sensors.init()
 
-  // #ifdef H5
   zalldata.register({
     $distinctIdType: 4
   })
-  // #endif
-
-  // #ifdef MP-WEIXIN
-  zalldata.registerApp({
-    $distinctIdType: 4
-  })
-  // #endif
-
-
   zalldata.identify('openid-11111')
 
   zalldata.init();
 
   // 若需要同时设置业务id和匿名id作为id关联
   setTimeout(() => {
-
-    // #ifdef H5
     zalldata.register({
       $distinctIdType: 3
     })
-    // #endif
-
-    // #ifdef MP-WEIXIN
-    zalldata.instance.registerApp({
-      $distinctIdType: 3
-    })
-    //#endif
 
     zalldata.login('unionid-22222')
   })
-
-
+	
   // 发送 res.code 到后台换取 openId, sessionKey, unionId
 
   // #ifdef MP-WEIXIN
@@ -55,31 +34,16 @@ onLaunch(() => {
         url: '后端获取 OpenID 的请求',
         success: function(res: any) {
           zalldata.identify('openid-11111')
-
-          // #ifdef H5
           zalldata.register({
             $distinctIdType: 4
           })
-          //#endif
-          // #ifdef MP-WEIXIN
-          zalldata.instance.registerApp({
-            $distinctIdType: 4
-          })
-          //#endif
           zalldata.init();
 
           // 若需要同时设置业务id和匿名id作为id关联
           setTimeout(() => {
-            // #ifdef H5
             zalldata.register({
               $distinctIdType: 3
             })
-            //#endif
-            // #ifdef MP-WEIXIN
-            zalldata.instance.registerApp({
-              $distinctIdType: 3
-            })
-            //#endif
             zalldata.login('unionid-22222')
           })
         },

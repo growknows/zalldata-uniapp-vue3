@@ -1,5 +1,5 @@
 /**
- * SensorsData uni-app SDK 
+ * uni-app SDK
  * APP原生SDK所有API -> JS可用的所有API -> 各端通用的有限的桥API
  * APP SDK(所有) -> JS 写的 SDK(所有) -> uni-app Bridge SDK(有限)
  */
