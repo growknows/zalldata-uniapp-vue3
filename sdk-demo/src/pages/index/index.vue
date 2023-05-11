@@ -33,7 +33,8 @@ import { onShareAppMessage } from "@dcloudio/uni-app";
 const title = ref('Hello')
 const onLogin = () => {
   uni.zalldata.register({
-    $distinctIdType: 2
+    $distinctIdType: 2,
+		$originalIdType: 4
   })
   uni.zalldata.login('mobile-123456')
 }

@@ -31,6 +31,8 @@ const trackEntity = {
 		"$lib_version": "1.14.5"
 	},
 	properties: {
+		"$distinctIdType": 3,
+        "$originalIdType": 4,
 		"$lib": "Android",//SDK类型
 		"$os_version": "9.1.0",//操作系统版本
 		"$lib_version": "3.1.5",//SDK版本
@@ -105,7 +107,7 @@ const trackEntity = {
 ## 设置公共属性
 
 ```javascript
-  	zall.registerApp({
+  	zall.register({
         $distinctIdType: type
     })
 ```

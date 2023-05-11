@@ -18,7 +18,8 @@ onLaunch(() => {
   // 若需要同时设置业务id和匿名id作为id关联
   setTimeout(() => {
     zalldata.register({
-      $distinctIdType: 3
+      $distinctIdType: 3,
+			$originalIdType: 4
     })
 
     zalldata.login('unionid-22222')
@@ -42,7 +43,8 @@ onLaunch(() => {
           // 若需要同时设置业务id和匿名id作为id关联
           setTimeout(() => {
             zalldata.register({
-              $distinctIdType: 3
+              $distinctIdType: 3,
+							$originalIdType: 4
             })
             zalldata.login('unionid-22222')
           })
