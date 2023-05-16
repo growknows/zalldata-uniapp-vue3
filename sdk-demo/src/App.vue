@@ -4,28 +4,34 @@ import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
 onLaunch(() => {
   console.log("App Launch", uni.zalldata);
   const zalldata = uni.zalldata
-  // 初始化 SDK
-  // 直接 init  埋点 id 会随机生成UUID
-  // sensors.init()
 
+
+  // 方案一: 单id上报
+  // zalldata.register({
+  //   $distinctIdType: 4
+  // })
+  // zalldata.instance.setOpenid('openid-11111', true)
+  // zalldata.init();
+  //
+  // return
+
+
+  // 方案二: 关联 OpenID 和 UnionID
   zalldata.register({
     $distinctIdType: 4
   })
-  zalldata.identify('openid-11111')
 
-  zalldata.init();
-
-  // 若需要同时设置业务id和匿名id作为id关联
   setTimeout(() => {
+    zalldata.instance.setOpenid('openid-11111', true)
+    zalldata.init();
+
     zalldata.register({
       $distinctIdType: 3,
-			$originalIdType: 4
+      $originalIdType: 4
     })
 
     zalldata.login('unionid-22222')
-  })
-	
-  // 发送 res.code 到后台换取 openId, sessionKey, unionId
+  },1000)
 
   // #ifdef MP-WEIXIN
   wx.login({
@@ -34,7 +40,7 @@ onLaunch(() => {
       wx.request({
         url: '后端获取 OpenID 的请求',
         success: function(res: any) {
-          zalldata.identify('openid-11111')
+          zalldata.instance.setOpenid('openid-11111', true)
           zalldata.register({
             $distinctIdType: 4
           })

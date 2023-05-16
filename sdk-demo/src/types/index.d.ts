@@ -8,6 +8,7 @@ declare global {
         login: Fn
         registerApp?: Fn
         register?: Fn
+        setOpenid?: Fn
     }
     declare interface Uni {
         zalldata: zalldata;

@@ -3,8 +3,8 @@ import App from "./App.vue";
 import zalldata from '../../uni-app-sdk/index'
 // 配置初始化参数
 zalldata.setPara({
-    name: 'sensors',
-    server_url: '', // 上报地址
+    name: 'zall',
+    // server_url: 'https://logcollect.zalldata.cn/a?service=zall&project=z7dsss', // 上报地址
     // 全埋点控制开关
     autoTrack: {
         appLaunch: true, // 默认为 true，false 则关闭 $MPLaunch 事件采集
