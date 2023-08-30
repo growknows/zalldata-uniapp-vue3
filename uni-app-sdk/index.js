@@ -29,6 +29,7 @@ import bridgeAPI from './middle/baidu.js';
 import bridgeAPI from './middle/toutiao.js';
 // #endif
 
+import get_enableVue3MpClick from './vue3-mpclick';
 
 let sa = {};
 
@@ -75,5 +76,9 @@ if (typeof bridgeAPI === 'undefined') {
 
 }
 
-
+const enableVue3MpClick = get_enableVue3MpClick(sa);
+// #ifdef VUE3
+enableVue3MpClick()
+// #endif
 export default sa;
+export { enableVue3MpClick };
