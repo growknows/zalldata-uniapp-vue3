@@ -23,49 +23,65 @@
 				采集任意点击
 			</button>
 		</view>
+		<child />
   </view>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { ref } from 'vue'
 import { onShareAppMessage } from "@dcloudio/uni-app";
+import child from "@/components/child"
+import { defineComponent } from 'vue'
 
-const title = ref('Hello')
-const onLogin = () => {
-  uni.zalldata.register({
-    $distinctIdType: 2,
-		$originalIdType: 4
-  })
-  uni.zalldata.login('mobile-123456')
-}
+export default defineComponent({
+	components: { child },
+	setup() {
+		const title = ref('Hello')
+		const onLogin = () => {
+			uni.zalldata.register({
+				$distinctIdType: 2,
+				$originalIdType: 4
+			})
+			uni.zalldata.login('mobile-123456')
+		}
 
-const onTrack = () => {
-  uni.zalldata.track('ClickAddFans', {
-    name: 'oscar'
-  })
-}
+		const onTrack = () => {
+			uni.zalldata.track('ClickAddFans', {
+				name: 'oscar'
+			})
+		}
 
-const onChange = () => {
-  uni.zalldata.register({
-    $app_name: '测试小程序'
-  })
-	console.log('公共属性设置成功！')
-}
+		const onChange = () => {
+			uni.zalldata.register({
+				$app_name: '测试小程序'
+			})
+			console.log('公共属性设置成功！')
+		}
 
-const onChangeProfile = () => {
-  uni.zalldata.setProfile({
-    $title: '你好111'
-  })
-}
-const onEvent = () => {
-	console.log('1111111')
-}
+		const onChangeProfile = () => {
+			uni.zalldata.setProfile({
+				$title: '你好111'
+			})
+		}
+		const onEvent = () => {
+			console.log('1111111')
+		}
+		// 开启分享, 此时可上报分享事件
+		onShareAppMessage(() => {
+			return {
+				title: '埋点采集',
+				path: "pages/index/index"
+			}
+		})
 
-// 开启分享, 此时可上报分享事件
-onShareAppMessage(() => {
-	return {
-		title: '埋点采集',
-		path: "pages/index/index"
+		return {
+			onLogin,
+			onTrack,
+			onChange,
+			onEvent,
+			onChangeProfile,
+			onShareAppMessage
+		}
 	}
 })
 </script>
@@ -73,11 +89,9 @@ onShareAppMessage(() => {
 <style>
 .container {
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px 0;
   box-sizing: border-box;
   background: #F7F6F6;
 }
